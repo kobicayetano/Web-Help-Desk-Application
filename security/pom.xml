@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>controller</artifactId>
+    <artifactId>security</artifactId>
     <packaging>jar</packaging>
 
     <dependencies>
@@ -21,17 +21,23 @@
 
         <dependency>
             <groupId>com.ojt</groupId>
+            <artifactId>service</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.ojt</groupId>
             <artifactId>persistence</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
         <dependency>
             <groupId>com.ojt</groupId>
-            <artifactId>service</artifactId>
+            <artifactId>controller</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
-
     </dependencies>
+
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>

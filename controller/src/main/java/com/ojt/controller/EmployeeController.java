@@ -2,7 +2,7 @@ package com.ojt.controller;
 
 
 import com.ojt.model.Employee;
-import com.ojt.service.EmployeeService;
+import com.ojt.service.EmployeeServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -13,59 +13,59 @@ import java.util.Map;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/helpdesk/employees")
+@RequestMapping("/helpdesk/")
 public class EmployeeController {
 
-    private final EmployeeService employeeService;
+    private final EmployeeServiceImpl employeeServiceImpl;
 
 
     @Autowired
-    public EmployeeController(EmployeeService employeeService){
-        this.employeeService = employeeService;
+    public EmployeeController(EmployeeServiceImpl employeeServiceImpl){
+        this.employeeServiceImpl = employeeServiceImpl;
     }
 
 
-     @GetMapping("/all")
+     @GetMapping("employees/all")
      public List<Employee> getAllEmployees(){
-     return employeeService.list();
+     return employeeServiceImpl.list();
      }
 
-    @GetMapping("/{employeeId}")
+    @GetMapping("employees/{employeeId}")
     public Optional<Employee> getEmployeeById(@PathVariable("employeeId") Long employeeId) throws Exception{
-        return employeeService.view(employeeId);
+        return employeeServiceImpl.view(employeeId);
     }
 
     @Transactional
-    @PostMapping("/add")
+    @PostMapping("manage/employee/add")
     public String createEmployee(@RequestBody Employee employee) throws Exception{
-        employeeService.create(employee);
+        employeeServiceImpl.create(employee);
         return "Employee "+ employee.getId() + " added.";
     }
 
     @Transactional
-    @DeleteMapping ("/delete/{id}")
+    @DeleteMapping ("manage/employee/delete/{id}")
     public Map<String, Boolean> deleteEmployee(@PathVariable("id") Long id) throws Exception{
-        employeeService.delete(id);
+        employeeServiceImpl.delete(id);
         Map<String, Boolean> response = new HashMap<>();
         response.put("--Employee Deleted--", Boolean.TRUE);
         return response;
     }
 
     @Transactional
-    @PutMapping("/update/{id}")
+    @PutMapping("manage/employee/update/{id}")
     public Map<String, Boolean> updateEmployee(@PathVariable("id") Long id,
                                                @RequestBody Employee updatedEmployee) throws Exception{
-        employeeService.update(id, updatedEmployee);
+        employeeServiceImpl.update(id, updatedEmployee);
         Map<String, Boolean> response = new HashMap<>();
         response.put("--Employee Updated--", Boolean.TRUE);
         return response;
     }
 
     @Transactional
-    @PutMapping("/{employeeId}/assign/{ticketId}")
+    @PutMapping("manage/employee/{employeeId}/assignTicket/{ticketId}")
     public Map<String, Boolean> assignTicket(@PathVariable("employeeId") Long employeeId,
                                                @PathVariable("ticketId") Long ticketId) throws Exception{
-        employeeService.assignTicket(employeeId, ticketId);
+        employeeServiceImpl.assignTicket(employeeId, ticketId);
         Map<String, Boolean> response = new HashMap<>();
         response.put("--Ticket assigned to employee--", Boolean.TRUE);
         return response;

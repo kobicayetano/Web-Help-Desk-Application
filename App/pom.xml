@@ -34,7 +34,13 @@
 
         <dependency>
             <groupId>com.ojt</groupId>
-            <artifactId>contoller</artifactId>
+            <artifactId>controller</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.ojt</groupId>
+            <artifactId>security</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 

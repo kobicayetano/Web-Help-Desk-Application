@@ -47,24 +47,12 @@ public class Employee {
     private Set<Ticket> ticketWatched = new HashSet<>();
 
 
-    //For authentication
-    @Column(name = "username", nullable = false, unique = true)
-    private String username;
-    @Column(name = "password", nullable = false)
-    private String password;
-    @Column(name = "role", nullable = false)
-    private String role;
-
-
     public Employee(long employeeNumber, String firstName, String middleName, String lastName, Department department, String username, String password, String role) {
         this.employeeNumber = employeeNumber;
         this.firstName = firstName;
         this.middleName = middleName;
         this.lastName = lastName;
         this.department = department;
-        this.username = username;
-        this.password = password;
-        this.role = role;
     }
 
     public void removeAllWatchedTickets(){
