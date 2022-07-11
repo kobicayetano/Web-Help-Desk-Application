@@ -47,7 +47,7 @@ public class Employee {
     private Set<Ticket> ticketWatched = new HashSet<>();
 
 
-    public Employee(long employeeNumber, String firstName, String middleName, String lastName, Department department, String username, String password, String role) {
+    public Employee(long employeeNumber, String firstName, String middleName, String lastName, Department department) {
         this.employeeNumber = employeeNumber;
         this.firstName = firstName;
         this.middleName = middleName;

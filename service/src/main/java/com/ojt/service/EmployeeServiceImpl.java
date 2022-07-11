@@ -73,12 +73,12 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public Ticket assignTicket(Long employeeId, Long ticketId) throws Exception{
         Employee employee = employeeRepository.findById(employeeId)
-                .orElseThrow(()-> new Exception("com.ojt.model.Employee with id: "+ employeeId + " does not exists."));
+                .orElseThrow(()-> new Exception("Employee with id: "+ employeeId + " does not exists."));
         Ticket ticket = ticketRepository.findById(ticketId)
-                .orElseThrow(()-> new Exception("com.ojt.model.Ticket with id: "+ ticketId + " does not exists."));
+                .orElseThrow(()-> new Exception("Ticket with id: "+ ticketId + " does not exists."));
 
         if(ticket.getAssignee()!=null){
-            throw new Exception("com.ojt.model.Ticket with id: "+ ticketId + " is already assigned to a user.");
+            throw new Exception("Ticket with id: "+ ticketId + " is already assigned to a user.");
         }else{
             ticket.setAssignee(employee);
             ticketRepository.save(ticket);

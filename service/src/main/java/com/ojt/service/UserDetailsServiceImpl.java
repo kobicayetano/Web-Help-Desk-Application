@@ -28,6 +28,9 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 
     @Override
     public User create(User user) throws Exception {
+        if(userRepository.existsByUsername(user.getUsername())){
+            throw new Exception("User with username: " + user.getUsername() + " already exists.");
+        }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
