@@ -40,7 +40,6 @@ public class UserDetailsServiceImpl implements UserDetailsService{
         User user = userRepository.findById(userId)
                 .orElseThrow(()->new  Exception ("User with id: "+ userId + " does not exists."));
         userRepository.delete(user);
-
         return true;
     }
 
