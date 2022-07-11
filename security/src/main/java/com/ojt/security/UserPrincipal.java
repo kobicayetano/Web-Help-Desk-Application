@@ -1,4 +1,4 @@
-package com.ojt.persistence;
+package com.ojt.security;
 
 import com.ojt.model.User;
 import org.springframework.security.core.GrantedAuthority;

@@ -1,7 +1,5 @@
 package com.ojt.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import com.ojt.model.enums.Severity;
 import com.ojt.model.enums.Status;
 import lombok.Getter;
@@ -35,7 +33,6 @@ public class Ticket {
     private Employee assignee;
 
     @ManyToMany(cascade = CascadeType.PERSIST)
-    @JsonIgnore
     @JoinTable(name="ticket_watchers", joinColumns = {@JoinColumn( name="ticket_id")},
             inverseJoinColumns = {@JoinColumn(name="employee_id")})
     private List<Employee> watchers = new ArrayList<>();

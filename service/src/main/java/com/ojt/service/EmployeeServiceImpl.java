@@ -28,50 +28,50 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Optional<Employee> view(Long id) throws Exception{
-        if(employeeRepository.existsById(id)){
-            return employeeRepository.findById(id);
-        }else{
-            throw new Exception("com.ojt.model.Employee with id: "+id+" does not exist.");
-        }
+    public Employee view(Long id) throws Exception{
+        Employee employee = employeeRepository.findById(id)
+                .orElseThrow(()-> new Exception("Employee with id: "+ id + " does not exists."));
+        return employee;
     }
+
     @Override
-    public void create(Employee employee) throws Exception {
+    public Employee create(Employee employee) throws Exception {
         if(employeeRepository.existsByEmployeeNumber(employee.getEmployeeNumber())){
-            throw new Exception("com.ojt.model.Employee Number: " + employee.getEmployeeNumber() + " already exists.");
-        }else{
-            employeeRepository.save(employee);
+            throw new Exception("Employee Number: " + employee.getEmployeeNumber() + " already exists.");
         }
+        return employeeRepository.save(employee);
     }
     @Override
-    public void delete(Long employeeId) throws Exception{
+    public Boolean delete(Long employeeId) throws Exception{
         Employee employee = employeeRepository.findById(employeeId)
-                .orElseThrow(()-> new Exception("com.ojt.model.Employee with id: "+ employeeId + " does not exists."));
+                .orElseThrow(()-> new Exception("Employee with id: "+ employeeId + " does not exists."));
 
         if(employee.getTicketAssigned().size()>0){
             throw new Exception("Cannot delete employee with assigned ticket.");
-        }else{
-            //delete associated rows in ticket_watchers
-            employee.removeAllWatchedTickets();
-            employeeRepository.delete(employee);
         }
+        //delete associated rows in ticket_watchers
+        employee.removeAllWatchedTickets();
+        employeeRepository.delete(employee);
+        return true;
     }
+
     @Override
-    public void update(Long employeeId, Employee updatedEmployee) throws Exception{
+    public Employee update(Long employeeId, Employee updatedEmployee) throws Exception{
         Employee employee = employeeRepository.findById(employeeId)
-                .orElseThrow(()-> new Exception("com.ojt.model.Employee with id: "+ employeeId + " does not exists."));
+                .orElseThrow(()-> new Exception("Employee with id: "+ employeeId + " does not exists."));
         if(employeeRepository.existsById(updatedEmployee.getEmployeeNumber())){
-            throw new Exception("com.ojt.model.Employee with employee number: "+ updatedEmployee.getEmployeeNumber() + " already exists.");
+            throw new Exception("Employee with employee number: "+ updatedEmployee.getEmployeeNumber() + " already exists.");
         }
         employee.setEmployeeNumber(updatedEmployee.getEmployeeNumber());
         employee.setFirstName(updatedEmployee.getFirstName());
         employee.setMiddleName(updatedEmployee.getMiddleName());
         employee.setLastName(updatedEmployee.getLastName());
         employee.setDepartment(updatedEmployee.getDepartment());
-        employeeRepository.save(employee);
+
+        return employeeRepository.save(employee);
     }
     @Override
-    public void assignTicket(Long employeeId, Long ticketId) throws Exception{
+    public Ticket assignTicket(Long employeeId, Long ticketId) throws Exception{
         Employee employee = employeeRepository.findById(employeeId)
                 .orElseThrow(()-> new Exception("com.ojt.model.Employee with id: "+ employeeId + " does not exists."));
         Ticket ticket = ticketRepository.findById(ticketId)
@@ -83,6 +83,7 @@ public class EmployeeServiceImpl implements EmployeeService {
             ticket.setAssignee(employee);
             ticketRepository.save(ticket);
         }
+        return ticket;
     }
 
 

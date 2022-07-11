@@ -1,7 +1,6 @@
-package com.ojt.persistence;
+package com.ojt.security;
 
 import com.ojt.model.User;
-import com.ojt.persistence.UserPrincipal;
 import com.ojt.persistence.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

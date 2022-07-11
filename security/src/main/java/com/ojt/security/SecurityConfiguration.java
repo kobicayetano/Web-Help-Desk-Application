@@ -4,6 +4,7 @@ package com.ojt.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -17,13 +18,26 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
+    private UserPrincipalDetailsService userPrincipalDetailsService;
+
+    public SecurityConfiguration(UserPrincipalDetailsService userPrincipalDetailsService){
+        this.userPrincipalDetailsService = userPrincipalDetailsService;
+    }
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth
-                .inMemoryAuthentication()
-                .withUser("account.admin").password(passwordEncoder().encode("password.admin")).roles("ADMIN")
-                .and()
-                .withUser("account.user").password(passwordEncoder().encode("password.user")).roles("USER");
+        auth.authenticationProvider(authenticationProvider());
+
+    }
+
+
+    @Bean
+    DaoAuthenticationProvider authenticationProvider(){
+        DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
+        daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
+        daoAuthenticationProvider.setUserDetailsService(this.userPrincipalDetailsService);
+
+        return daoAuthenticationProvider;
     }
 
     @Override
@@ -33,6 +47,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/**/manage/**").hasRole("ADMIN")
                 .antMatchers("/**/employees/**", "/**/tickets/**").hasAnyRole("USER", "ADMIN")
+                .antMatchers("/users/**").hasRole("ADMIN")
                 .and()
                 .httpBasic();
     }

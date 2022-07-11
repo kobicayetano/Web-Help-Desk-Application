@@ -13,22 +13,22 @@ public interface TicketService {
     public List<Ticket> list();
 
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
-    public Optional<Ticket> view(Long id) throws Exception;
+    public Ticket view(Long id) throws Exception;
 
     @PreAuthorize("hasRole('ADMIN')")
-    public void create(Ticket ticket) throws Exception;
+    public Ticket create(Ticket ticket) throws Exception;
 
     @PreAuthorize("hasRole('ADMIN')")
-    public void update(Long ticketId, Ticket updatedTicket) throws Exception;
+    public Ticket update(Long ticketId, Ticket updatedTicket) throws Exception;
 
     @PreAuthorize("hasRole('ADMIN')")
-    public void delete(Long ticketId) throws Exception;
+    public Boolean delete(Long ticketId) throws Exception;
 
     @PreAuthorize("hasRole('ADMIN')")
-    public void addWatcher(Long ticketId, Long employeeId) throws Exception;
+    public Ticket addWatcher(Long ticketId, Long employeeId) throws Exception;
 
     @PreAuthorize("hasRole('ADMIN')")
-    public void removeWatcher(Long ticketId, Long employeeId) throws Exception;
+    public Ticket removeWatcher(Long ticketId, Long employeeId) throws Exception;
 
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     public Set<Ticket> viewTicketsAssignedToEmployeeNumber(long employeeNumber) throws Exception;
