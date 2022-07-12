@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -27,6 +28,7 @@ public class UserDetailsServiceImpl implements UserDetailsService{
     }
 
     @Override
+    @Transactional
     public User create(User user) throws Exception {
         if(userRepository.existsByUsername(user.getUsername())){
             throw new Exception("User with username: " + user.getUsername() + " already exists.");
@@ -36,6 +38,7 @@ public class UserDetailsServiceImpl implements UserDetailsService{
     }
 
     @Override
+    @Transactional
     public Boolean delete(Long userId) throws Exception {
         User user = userRepository.findById(userId)
                 .orElseThrow(()->new  Exception ("User with id: "+ userId + " does not exists."));
@@ -44,6 +47,7 @@ public class UserDetailsServiceImpl implements UserDetailsService{
     }
 
     @Override
+    @Transactional
     public User update(Long userId, User updatedUser) throws Exception {
         User user = userRepository.findById(userId)
                 .orElseThrow(()->new  Exception ("User with id: "+ userId + " does not exists."));

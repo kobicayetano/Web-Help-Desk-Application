@@ -6,6 +6,7 @@ import com.ojt.persistence.EmployeeRepository;
 import com.ojt.persistence.TicketRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -35,6 +36,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
+    @Transactional
     public Employee create(Employee employee) throws Exception {
         if(employeeRepository.existsByEmployeeNumber(employee.getEmployeeNumber())){
             throw new Exception("Employee Number: " + employee.getEmployeeNumber() + " already exists.");
@@ -42,6 +44,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employeeRepository.save(employee);
     }
     @Override
+    @Transactional
     public Boolean delete(Long employeeId) throws Exception{
         Employee employee = employeeRepository.findById(employeeId)
                 .orElseThrow(()-> new Exception("Employee with id: "+ employeeId + " does not exists."));
@@ -56,6 +59,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
+    @Transactional
     public Employee update(Long employeeId, Employee updatedEmployee) throws Exception{
         Employee employee = employeeRepository.findById(employeeId)
                 .orElseThrow(()-> new Exception("Employee with id: "+ employeeId + " does not exists."));
@@ -71,6 +75,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employeeRepository.save(employee);
     }
     @Override
+    @Transactional
     public Ticket assignTicket(Long employeeId, Long ticketId) throws Exception{
         Employee employee = employeeRepository.findById(employeeId)
                 .orElseThrow(()-> new Exception("Employee with id: "+ employeeId + " does not exists."));

@@ -45,7 +45,7 @@ class EmployeeServiceImplTest {
 
 
     @Test
-    void canGetListOfEmployees() {
+    public void canGetListOfEmployees() {
         //when
         underTest.list();
         //then
@@ -54,7 +54,7 @@ class EmployeeServiceImplTest {
     }
 
     @Test
-    void canViewOneEmployee() throws Exception {
+    public void canViewOneEmployee() throws Exception {
         //Given
         Long id = 1L;
         Employee employee = new Employee(
@@ -64,15 +64,15 @@ class EmployeeServiceImplTest {
                 "Cayetano",
                 Department.ADMIN
         );
-
-        given(employeeRepository.findById(any())).willReturn(Optional.of(employee));
         //when
+        given(employeeRepository.findById(any())).willReturn(Optional.of(employee));
         underTest.view(id);
+        //then
         verify(employeeRepository).findById(id);
     }
 
     @Test
-    void cannotViewOneEmployee() throws Exception {
+    public void cannotViewOneEmployee() throws Exception {
         //Given
         Long id = 1L;
         //when
@@ -82,7 +82,7 @@ class EmployeeServiceImplTest {
     }
 
     @Test
-    void canAddNewEmployee() throws Exception{
+    public void canAddNewEmployee() throws Exception{
         //Given
         Employee employee = new Employee(
                 1000,
@@ -108,7 +108,7 @@ class EmployeeServiceImplTest {
     }
 
     @Test
-    void cannotAddNewEmployeeWithExistingEmployeeNumber() throws Exception{
+    public void cannotAddNewEmployeeWithExistingEmployeeNumber() throws Exception{
         //Given
         Employee employee = new Employee(
                 1000,
@@ -130,7 +130,7 @@ class EmployeeServiceImplTest {
     }
 
     @Test
-    void canDeleteOneEmployee() throws Exception{
+    public void canDeleteOneEmployee() throws Exception{
         //Given
         Long id = 1L;
         Employee employee = new Employee(
@@ -140,16 +140,16 @@ class EmployeeServiceImplTest {
                 "Cayetano",
                 Department.ADMIN
         );
-
-        given(employeeRepository.findById(any())).willReturn(Optional.of(employee));
         //when
+        given(employeeRepository.findById(any())).willReturn(Optional.of(employee));
         Boolean actual = underTest.delete(id);
+        //then
         verify(employeeRepository).delete(employee);
         assertTrue(actual);
     }
 
     @Test
-    void cannotDeleteEmployeeThatDoesntExist(){
+    public void cannotDeleteEmployeeThatDoesntExist(){
         //Given
         Long id = 1L;
         //when
@@ -160,7 +160,7 @@ class EmployeeServiceImplTest {
     }
 
     @Test
-    void cannotDeleteEmployeeThatHasTicket(){
+    public void cannotDeleteEmployeeThatHasTicket(){
         //Given
         Long id = 1L;
         Employee employee = new Employee(
@@ -201,7 +201,7 @@ class EmployeeServiceImplTest {
         given(employeeRepository.findById(any())).willReturn(Optional.of(employee));
         given(employeeRepository.existsById(any())).willReturn(false);
         underTest.update(id, employee);
-
+        //then
         ArgumentCaptor<Employee> employeeArgumentCaptor =
                 ArgumentCaptor.forClass(Employee.class);
 
@@ -294,7 +294,7 @@ class EmployeeServiceImplTest {
         //then
         assertThatThrownBy(() -> underTest.assignTicket(employeeId, ticketId))
                 .hasMessage("Employee with id: "+ employeeId + " does not exists.");
-        //then
+
         verify(ticketRepository, never()).save(ticket);
         assertNull(ticket.getAssignee());
     }

@@ -28,7 +28,7 @@ public class TicketServiceImpl implements TicketService{
     @Override
     public Ticket view(Long id) throws Exception{
         Ticket ticket = ticketRepository.findById(id)
-                .orElseThrow(()->new  Exception ("Ticket with id: "+ id + " does not exists."));
+                .orElseThrow(()->new  Exception ("Ticket with id: "+ id + " does not exist."));
         return ticket;
     }
     @Override
@@ -40,7 +40,7 @@ public class TicketServiceImpl implements TicketService{
     @Transactional
     public Ticket update(Long ticketId, Ticket updatedTicket) throws Exception{
         Ticket ticket = ticketRepository.findById(ticketId)
-                        .orElseThrow(()->new  Exception ("Ticket with id: "+ ticketId + " does not exists."));
+                        .orElseThrow(()->new  Exception ("Ticket with id: "+ ticketId + " does not exist."));
         ticket.setDescription(updatedTicket.getDescription());
         ticket.setSeverity(updatedTicket.getSeverity());
         ticket.setStatus(updatedTicket.getStatus());
@@ -52,7 +52,7 @@ public class TicketServiceImpl implements TicketService{
     @Transactional
     public Boolean delete(Long ticketId) throws Exception{
         Ticket ticket = ticketRepository.findById(ticketId)
-                .orElseThrow(()-> new Exception("Ticket with id: "+ ticketId + " does not exists."));
+                .orElseThrow(()-> new Exception("Ticket with id: "+ ticketId + " does not exist."));
         //delete associated rows in ticket_watchers
         if(ticket.getWatchers().size()>0){
             ticket.removeAllWatchers();
@@ -69,9 +69,9 @@ public class TicketServiceImpl implements TicketService{
     @Transactional
     public Ticket addWatcher(Long ticketId, Long employeeId) throws Exception{
         Ticket ticket = ticketRepository.findById(ticketId)
-                .orElseThrow(()-> new Exception("Ticket with id: "+ ticketId + " does not exists."));
+                .orElseThrow(()-> new Exception("Ticket with id: "+ ticketId + " does not exist."));
         Employee employee = employeeRepository.findById(employeeId)
-                .orElseThrow(()-> new Exception("Employee with id: "+ employeeId + " does not exists."));
+                .orElseThrow(()-> new Exception("Employee with id: "+ employeeId + " does not exist."));
         if(ticket.getWatchers().contains(employee)){
            throw new Exception("Employee with id: "+ employeeId + " is already listed as watcher.");
         }
@@ -83,9 +83,9 @@ public class TicketServiceImpl implements TicketService{
     @Transactional
     public Ticket removeWatcher(Long ticketId, Long employeeId) throws Exception{
         Ticket ticket = ticketRepository.findById(ticketId)
-                .orElseThrow(()-> new Exception("Ticket with id: "+ ticketId + " does not exists."));
+                .orElseThrow(()-> new Exception("Ticket with id: "+ ticketId + " does not exist."));
         Employee employee = employeeRepository.findById(employeeId)
-                .orElseThrow(()-> new Exception("Employee with id: "+ employeeId + " does not exists."));
+                .orElseThrow(()-> new Exception("Employee with id: "+ employeeId + " does not exist."));
         if(ticket.getWatchers().contains(employee)){
             ticket.removeWatcher(employee);
             ticketRepository.save(ticket);
@@ -98,14 +98,14 @@ public class TicketServiceImpl implements TicketService{
     @Override
     public Set<Ticket> viewTicketsAssignedToEmployeeNumber(long employeeNumber) throws Exception{
         Employee employee = employeeRepository.findByEmployeeNumber(employeeNumber)
-                .orElseThrow(()-> new Exception("Employee with employee number: "+ employeeNumber + " does not exists."));
+                .orElseThrow(()-> new Exception("Employee with employee number: "+ employeeNumber + " does not exist."));
         return employee.getTicketAssigned();
     }
 
     @Override
     public Set<Ticket> viewTicketsWatchedByEmployeeNumber(long employeeNumber) throws Exception{
         Employee employee = employeeRepository.findByEmployeeNumber(employeeNumber)
-                .orElseThrow(()-> new Exception("Employee with employee number: "+ employeeNumber + " does not exists."));
+                .orElseThrow(()-> new Exception("Employee with employee number: "+ employeeNumber + " does not exist."));
         return employee.getTicketWatched();
     }
 
