@@ -20,7 +20,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private UserPrincipalDetailsService userPrincipalDetailsService;
 
-    public SecurityConfiguration(UserPrincipalDetailsService userPrincipalDetailsService){
+        public SecurityConfiguration(UserPrincipalDetailsService userPrincipalDetailsService){
         this.userPrincipalDetailsService = userPrincipalDetailsService;
     }
 

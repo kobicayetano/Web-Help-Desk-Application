@@ -5,6 +5,9 @@ import com.ojt.model.User;
 import com.ojt.service.UserDetailsService;
 import com.ojt.service.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,25 +24,25 @@ public class UserController {
     }
 
     @GetMapping("all")
-    public List<User> getAllUsers(){
-        return userDetailsServiceImpl.list();
+    public ResponseEntity<List<User>> getAllUsers(){
+        return new ResponseEntity<>(userDetailsServiceImpl.list(), HttpStatus.OK);
     }
-
+    @Transactional
     @PostMapping("add")
-    public User addUser(@RequestBody  User user) throws Exception{
-        return userDetailsServiceImpl.create(user);
-    }
+    public ResponseEntity<User> addUser(@RequestBody  User user) throws Exception{
+        return new ResponseEntity<>(userDetailsServiceImpl.create(user), HttpStatus.CREATED);
 
+    }
+    @Transactional
     @PutMapping("update/{id}")
-    public User updateUser(@PathVariable ("id") Long id,
+    public ResponseEntity<User> updateUser(@PathVariable ("id") Long id,
                             @RequestBody User user) throws Exception{
-
-        return userDetailsServiceImpl.update(id, user);
+        return new ResponseEntity<>(userDetailsServiceImpl.update(id, user), HttpStatus.OK);
     }
-
+    @Transactional
     @DeleteMapping("delete/{id}")
-    public Boolean deleteUser(@PathVariable ("id") Long id) throws Exception{
-        return userDetailsServiceImpl.delete(id);
+    public ResponseEntity<Boolean> deleteUser(@PathVariable ("id") Long id) throws Exception{
+        return new ResponseEntity<>(userDetailsServiceImpl.delete(id), HttpStatus.NO_CONTENT);
     }
 
 

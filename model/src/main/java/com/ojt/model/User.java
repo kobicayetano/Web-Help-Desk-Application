@@ -1,6 +1,7 @@
 package com.ojt.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -34,6 +35,7 @@ public class User{
         this.role = role;
     }
 
+    @JsonIgnore
     public List<String> getRolesList(){
         if(this.role.length()>0) {
             return List.of(this.role.split(","));
