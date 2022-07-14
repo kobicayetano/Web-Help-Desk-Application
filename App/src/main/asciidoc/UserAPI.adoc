@@ -1,0 +1,43 @@
+== USER API DOCUMENTATION
+
+Documentation for the UserController Endpoints
+
+[[Get_all_users]]
+=== GET ALL USERS
+
+.request
+include::{snippets}/UserControllerTest/getAllUsers/http-request.adoc[]
+
+.response
+include::{snippets}/UserControllerTest/getAllUsers/http-response.adoc[]
+include::{snippets}/UserControllerTest/getAllUsers/response-fields.adoc[]
+
+[[Add_user]]
+=== ADD USER
+
+.request
+include::{snippets}/UserControllerTest/createUser/http-request.adoc[]
+
+.response
+include::{snippets}/UserControllerTest/createUser/http-response.adoc[]
+include::{snippets}/UserControllerTest/createUser/response-fields.adoc[]
+
+[[Update_user]]
+=== UPDATE USER
+
+.request
+include::{snippets}/UserControllerTest/updateUser/http-request.adoc[]
+
+.response
+include::{snippets}/UserControllerTest/updateUser/http-response.adoc[]
+include::{snippets}/UserControllerTest/updateUser/response-fields.adoc[]
+
+[[Delete_user]]
+=== DELETE USER
+
+.request
+include::{snippets}/UserControllerTest/deleteUser/http-request.adoc[]
+
+.response
+include::{snippets}/UserControllerTest/deleteUser/http-response.adoc[]
+

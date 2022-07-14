@@ -1,0 +1,18 @@
+:sectnums:
+:sectnumlevels: 5
+:toc: left
+:toclevels: 3
+:page-layout: docs
+
+= WEB HELP DESK APPLICATION DOCUMENTATION
+
+Documentation for the Helpdesk Endpoints
+
+[[Employee_API]]
+include::EmployeeAPI.adoc[]
+
+[[Ticket_API]]
+include::TicketAPI.adoc[]
+
+[[User_API]]
+include::UserAPI.adoc[]

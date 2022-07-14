@@ -1,0 +1,62 @@
+== EMPLOYEE API DOCUMENTATION
+
+Documentation for the EmployeeController Endpoints
+
+[[Get_all_employees]]
+=== GET ALL EMPLOYEES
+
+.request
+include::{snippets}/EmployeeControllerTest/getAllEmployees/http-request.adoc[]
+
+.response
+include::{snippets}/EmployeeControllerTest/getAllEmployees/http-response.adoc[]
+include::{snippets}/EmployeeControllerTest/getAllEmployees/response-fields.adoc[]
+
+[[Get_one_employee]]
+=== GET ONE EMPLOYEE
+
+.request
+include::{snippets}/EmployeeControllerTest/getOneEmployee/http-request.adoc[]
+
+.response
+include::{snippets}/EmployeeControllerTest/getOneEmployee/http-response.adoc[]
+include::{snippets}/EmployeeControllerTest/getOneEmployee/response-fields.adoc[]
+
+[[Add_employee]]
+=== ADD EMPLOYEE
+
+.request
+include::{snippets}/EmployeeControllerTest/addEmployee/http-request.adoc[]
+
+.response
+include::{snippets}/EmployeeControllerTest/addEmployee/http-response.adoc[]
+include::{snippets}/EmployeeControllerTest/addEmployee/response-fields.adoc[]
+
+[[Update_employee]]
+=== UPDATE EMPLOYEE
+
+.request
+include::{snippets}/EmployeeControllerTest/updateEmployee/http-request.adoc[]
+
+.response
+include::{snippets}/EmployeeControllerTest/updateEmployee/http-response.adoc[]
+include::{snippets}/EmployeeControllerTest/updateEmployee/response-fields.adoc[]
+
+[[Delete_employee]]
+=== DELETE EMPLOYEE
+
+.request
+include::{snippets}/EmployeeControllerTest/deleteEmployee/http-request.adoc[]
+
+.response
+include::{snippets}/EmployeeControllerTest/deleteEmployee/http-response.adoc[]
+
+[[Assign_ticket_to_employee]]
+=== ASSIGN TICKET TO EMPLOYEE
+
+.request
+include::{snippets}/EmployeeControllerTest/assignTicketToEmployee/http-request.adoc[]
+
+.response
+include::{snippets}/EmployeeControllerTest/assignTicketToEmployee/http-response.adoc[]
+include::{snippets}/EmployeeControllerTest/assignTicketToEmployee/response-fields.adoc[]

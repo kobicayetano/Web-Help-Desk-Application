@@ -1,0 +1,93 @@
+== TICKET API DOCUMENTATION
+
+Documentation for the TicketController Endpoints
+
+
+[[Get_all_tickets]]
+=== GET ALL TICKETS
+
+.request
+include::{snippets}/TicketControllerTest/getAllTickets/http-request.adoc[]
+
+.response
+include::{snippets}/TicketControllerTest/getAllTickets/http-response.adoc[]
+include::{snippets}/TicketControllerTest/getAllTickets/response-fields.adoc[]
+
+[[Get_one_ticket]]
+=== GET ONE TICKET
+
+.request
+include::{snippets}/TicketControllerTest/getOneTicket/http-request.adoc[]
+
+.response
+include::{snippets}/TicketControllerTest/getOneTicket/http-response.adoc[]
+include::{snippets}/TicketControllerTest/getOneTicket/response-fields.adoc[]
+
+[[Add_ticket]]
+=== ADD TICKET
+
+.request
+include::{snippets}/TicketControllerTest/addTicket/http-request.adoc[]
+
+.response
+include::{snippets}/TicketControllerTest/addTicket/http-response.adoc[]
+include::{snippets}/TicketControllerTest/addTicket/response-fields.adoc[]
+
+[[Update_ticket]]
+=== UPDATE TICKET
+
+.request
+include::{snippets}/TicketControllerTest/updateTicket/http-request.adoc[]
+
+.response
+include::{snippets}/TicketControllerTest/updateTicket/http-response.adoc[]
+include::{snippets}/TicketControllerTest/updateTicket/response-fields.adoc[]
+
+[[Delete_ticket]]
+=== DELETE TICKET
+
+.request
+include::{snippets}/TicketControllerTest/deleteTicket/http-request.adoc[]
+
+.response
+include::{snippets}/TicketControllerTest/deleteTicket/http-response.adoc[]
+
+[[Add_ticket_watcher]]
+=== ADD TICKET WATCHER
+
+.request
+include::{snippets}/TicketControllerTest/addTicketWatcher/http-request.adoc[]
+
+.response
+include::{snippets}/TicketControllerTest/addTicketWatcher/http-response.adoc[]
+include::{snippets}/TicketControllerTest/addTicketWatcher/response-fields.adoc[]
+
+[[Remove_ticket_watcher]]
+=== REMOVE TICKET WATCHER
+
+.request
+include::{snippets}/TicketControllerTest/removeTicketWatcher/http-request.adoc[]
+
+.response
+include::{snippets}/TicketControllerTest/removeTicketWatcher/http-response.adoc[]
+include::{snippets}/TicketControllerTest/removeTicketWatcher/response-fields.adoc[]
+
+[[Get_tickets_assigned_to_employee]]
+=== GET TICKETS ASSIGN TO EMPLOYEE
+
+.request
+include::{snippets}/TicketControllerTest/viewTicketAssignedToEmployeeNumber/http-request.adoc[]
+
+.response
+include::{snippets}/TicketControllerTest/viewTicketAssignedToEmployeeNumber/http-response.adoc[]
+include::{snippets}/TicketControllerTest/viewTicketAssignedToEmployeeNumber/response-fields.adoc[]
+
+[[Get_tickets_watched_by_employee]]
+=== GET TICKETS WATCHED BY EMPLOYEE
+
+.request
+include::{snippets}/TicketControllerTest/viewTicketWatchedByEmployeeNumber/http-request.adoc[]
+
+.response
+include::{snippets}/TicketControllerTest/viewTicketWatchedByEmployeeNumber/http-response.adoc[]
+include::{snippets}/TicketControllerTest/viewTicketWatchedByEmployeeNumber/response-fields.adoc[]
