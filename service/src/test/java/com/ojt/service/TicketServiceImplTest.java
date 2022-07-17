@@ -202,7 +202,7 @@ class TicketServiceImplTest {
         );
         //when
         //then
-        assertThatThrownBy(() -> underTest.delete(id))
+        assertThatThrownBy(() -> underTest.update(id, ticket))
                 .hasMessage("Ticket with id: "+ id + " does not exist.");
     }
 

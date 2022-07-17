@@ -1,9 +1,6 @@
 package com.ojt.service;
 
-import com.ojt.model.Employee;
 import com.ojt.model.User;
-import com.ojt.persistence.EmployeeRepository;
-import com.ojt.persistence.TicketRepository;
 import com.ojt.persistence.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,6 +8,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Optional;
@@ -20,8 +18,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.never;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 @ExtendWith({MockitoExtension.class})
 class UserDetailsServiceImplTest {
@@ -30,6 +27,9 @@ class UserDetailsServiceImplTest {
     private UserRepository userRepository;
     @Mock
     private PasswordEncoder passwordEncoder;
+
+    @Mock
+    Authentication authentication;
 
     @BeforeEach
     void setUp(){
@@ -89,9 +89,27 @@ class UserDetailsServiceImplTest {
         );
 
         given(userRepository.findById(any())).willReturn(Optional.of(user));
-        Boolean actual = underTest.delete(id);
+        given(authentication.getName()).willReturn("String");
+        //given(securityContextHolder.getContext().getAuthentication().getName()).willReturn("String");
+        Boolean actual = underTest.delete(authentication,id);
         verify(userRepository).delete(user);
         assertTrue(actual);
+    }
+
+    @Test
+    public void cannotDeleteSelf() throws Exception{
+        Long id = 1L;
+        User user = new User(
+                "username",
+                "password",
+                "ADMIN"
+        );
+
+        given(userRepository.findById(any())).willReturn(Optional.of(user));
+        given(authentication.getName()).willReturn("username");
+        assertThatThrownBy(() -> underTest.delete(authentication, id))
+                .hasMessage("Cannot delete self.");
+        verify(userRepository, never()).delete(any());
     }
 
     @Test
@@ -100,7 +118,7 @@ class UserDetailsServiceImplTest {
         Long id = 1L;
         //when
         //then
-        assertThatThrownBy(() -> underTest.delete(id))
+        assertThatThrownBy(() -> underTest.delete(authentication, id))
                 .hasMessage("User with id: "+ id + " does not exists.");
         verify(userRepository, never()).delete(any());
     }

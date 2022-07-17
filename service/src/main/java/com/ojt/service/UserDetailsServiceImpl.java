@@ -3,7 +3,8 @@ package com.ojt.service;
 import com.ojt.model.User;
 import com.ojt.persistence.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,6 +16,9 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+
+
+
 
     @Autowired
     public UserDetailsServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder){
@@ -39,12 +43,20 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 
     @Override
     @Transactional
-    public Boolean delete(Long userId) throws Exception {
+    public Boolean delete(Authentication authentication, Long userId) throws Exception {
         User user = userRepository.findById(userId)
                 .orElseThrow(()->new  Exception ("User with id: "+ userId + " does not exists."));
+
+        String currentUser = authentication.getName();
+        if(currentUser.equals(user.getUsername())){
+            throw new Exception("Cannot delete self.");
+        }
+
         userRepository.delete(user);
         return true;
     }
+
+
 
     @Override
     @Transactional

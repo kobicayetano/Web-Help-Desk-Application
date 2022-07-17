@@ -150,7 +150,7 @@ public class UserControllerTest {
     @WithMockUser(username = "admin", roles = {"ADMIN"})
     public void deleteUser() throws Exception {
         Long userId = 1L;
-        given(userDetailsService.delete(any())).willReturn(true);
+        given(userDetailsService.delete(any(), any())).willReturn(true);
         mockMvc.perform(delete("/users/delete/" + userId.toString())
                         .contentType(MediaType.APPLICATION_JSON))
                 .andDo(print())

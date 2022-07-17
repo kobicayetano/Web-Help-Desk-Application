@@ -7,6 +7,7 @@ import com.ojt.service.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
@@ -41,8 +42,8 @@ public class UserController {
     }
     @Transactional
     @DeleteMapping("delete/{id}")
-    public ResponseEntity<Boolean> deleteUser(@PathVariable ("id") Long id) throws Exception{
-        return new ResponseEntity<>(userDetailsServiceImpl.delete(id), HttpStatus.NO_CONTENT);
+    public ResponseEntity<Boolean> deleteUser(Authentication authentication, @PathVariable ("id") Long id) throws Exception{
+        return new ResponseEntity<>(userDetailsServiceImpl.delete(authentication,id), HttpStatus.NO_CONTENT);
     }
 
 
