@@ -1,0 +1,14 @@
+[source,bash]
+----
+$ curl 'http://localhost:8080/helpdesk/manage/ticket/1/removeWatcher/1' -i -X PUT \
+    -H 'Content-Type: application/json' \
+    -d '{
+  "ticketNumber" : 1,
+  "title" : "Finished project",
+  "description" : "The project is complete",
+  "severity" : "Low",
+  "status" : "Closed",
+  "assignee" : null,
+  "watchers" : [ ]
+}'
+----

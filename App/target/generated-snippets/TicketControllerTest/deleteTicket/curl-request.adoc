@@ -1,0 +1,5 @@
+[source,bash]
+----
+$ curl 'http://localhost:8080/helpdesk/manage/ticket/delete/1' -i -X DELETE \
+    -H 'Content-Type: application/json'
+----

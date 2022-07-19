@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UserDetailsServiceImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">service</a> &gt; <a href="index.source.html" class="el_package">com.ojt.service</a> &gt; <span class="el_source">UserDetailsServiceImpl.java</span></div><h1>UserDetailsServiceImpl.java</h1><pre class="source lang-java linenums">package com.ojt.service;
+
+import com.ojt.model.User;
+import com.ojt.persistence.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+
+@Service
+public class UserDetailsServiceImpl implements UserDetailsService{
+
+    private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
+
+
+
+
+    @Autowired
+<span class="fc" id="L24">    public UserDetailsServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder){</span>
+<span class="fc" id="L25">        this.userRepository = userRepository;</span>
+<span class="fc" id="L26">        this.passwordEncoder = passwordEncoder;</span>
+<span class="fc" id="L27">    }</span>
+
+    @Override
+    public List&lt;User&gt; list() {
+<span class="fc" id="L31">        return userRepository.findAll();</span>
+    }
+
+    @Override
+    @Transactional
+    public User create(User user) throws Exception {
+<span class="fc bfc" id="L37" title="All 2 branches covered.">        if(userRepository.existsByUsername(user.getUsername())){</span>
+<span class="fc" id="L38">            throw new Exception(&quot;User with username: &quot; + user.getUsername() + &quot; already exists.&quot;);</span>
+        }
+<span class="fc" id="L40">        user.setPassword(passwordEncoder.encode(user.getPassword()));</span>
+<span class="fc" id="L41">        return userRepository.save(user);</span>
+    }
+
+    @Override
+    @Transactional
+    public Boolean delete(Authentication authentication, Long userId) throws Exception {
+<span class="fc" id="L47">        User user = userRepository.findById(userId)</span>
+<span class="fc" id="L48">                .orElseThrow(()-&gt;new  Exception (&quot;User with id: &quot;+ userId + &quot; does not exists.&quot;));</span>
+
+<span class="fc" id="L50">        String currentUser = authentication.getName();</span>
+<span class="fc bfc" id="L51" title="All 2 branches covered.">        if(currentUser.equals(user.getUsername())){</span>
+<span class="fc" id="L52">            throw new Exception(&quot;Cannot delete self.&quot;);</span>
+        }
+
+<span class="fc" id="L55">        userRepository.delete(user);</span>
+<span class="fc" id="L56">        return true;</span>
+    }
+
+
+
+    @Override
+    @Transactional
+    public User update(Long userId, User updatedUser) throws Exception {
+<span class="fc" id="L64">        User user = userRepository.findById(userId)</span>
+<span class="fc" id="L65">                .orElseThrow(()-&gt;new  Exception (&quot;User with id: &quot;+ userId + &quot; does not exists.&quot;));</span>
+
+<span class="fc" id="L67">        user.setUsername(updatedUser.getUsername());</span>
+<span class="fc" id="L68">        user.setPassword(passwordEncoder.encode(updatedUser.getPassword()));</span>
+<span class="fc" id="L69">        user.setRole(updatedUser.getRole());</span>
+
+<span class="fc" id="L71">        return userRepository.save(user);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

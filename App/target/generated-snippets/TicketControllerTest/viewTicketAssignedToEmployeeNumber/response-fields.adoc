@@ -1,0 +1,32 @@
+|===
+|Path|Type|Description
+
+|`+[].ticketNumber+`
+|`+Number+`
+|Generated ticket id
+
+|`+[].title+`
+|`+String+`
+|Title of the updated ticket
+
+|`+[].description+`
+|`+String+`
+|Description of the updated ticket
+
+|`+[].severity+`
+|`+String+`
+|Severity of the updated ticket
+
+|`+[].status+`
+|`+String+`
+|Status of the updated ticket
+
+|`+[].assignee+`
+|`+Object+`
+|Details of the employee assigned to the ticket
+
+|`+[].watchers+`
+|`+Array+`
+|Details of the employee watching the ticket
+
+|===

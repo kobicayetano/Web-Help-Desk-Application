@@ -1,0 +1,16 @@
+[source,http,options="nowrap"]
+----
+HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 195
+
+{
+  "ticketNumber" : 1,
+  "title" : "Finished project",
+  "description" : "The project is complete",
+  "severity" : "Low",
+  "status" : "Closed",
+  "assignee" : null,
+  "watchers" : [ ]
+}
+----

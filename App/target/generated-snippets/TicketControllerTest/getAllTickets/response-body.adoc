@@ -1,0 +1,12 @@
+[source,options="nowrap"]
+----
+[ {
+  "ticketNumber" : 1,
+  "title" : "Finished project",
+  "description" : "The project is complete",
+  "severity" : "Low",
+  "status" : "Closed",
+  "assignee" : null,
+  "watchers" : [ ]
+} ]
+----

@@ -1,0 +1,28 @@
+|===
+|Path|Type|Description
+
+|`+id+`
+|`+Number+`
+|Generated employee id
+
+|`+employeeNumber+`
+|`+Number+`
+|Updated  employee number
+
+|`+firstName+`
+|`+String+`
+|Employee's updated first name
+
+|`+middleName+`
+|`+String+`
+|Employee's updated middle name
+
+|`+lastName+`
+|`+String+`
+|Employee's updated last name
+
+|`+department+`
+|`+String+`
+|Employee's updated designated department
+
+|===

@@ -1,0 +1,19 @@
+[source,options="nowrap"]
+----
+[ {
+  "ticketNumber" : 1,
+  "title" : "Finished project",
+  "description" : "The project is complete",
+  "severity" : "Low",
+  "status" : "Closed",
+  "assignee" : null,
+  "watchers" : [ {
+    "id" : 1,
+    "employeeNumber" : 1000,
+    "firstName" : "Kobi",
+    "middleName" : "Glema",
+    "lastName" : "Cayetano",
+    "department" : "ADMIN"
+  } ]
+} ]
+----

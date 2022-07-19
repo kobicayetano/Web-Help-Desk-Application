@@ -1,0 +1,6 @@
+com\ojt\model\enums\Department.class
+com\ojt\model\enums\Severity.class
+com\ojt\model\Employee.class
+com\ojt\model\User.class
+com\ojt\model\enums\Status.class
+com\ojt\model\Ticket.class

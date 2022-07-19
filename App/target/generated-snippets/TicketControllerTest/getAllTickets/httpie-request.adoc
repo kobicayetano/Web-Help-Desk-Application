@@ -1,0 +1,5 @@
+[source,bash]
+----
+$ http GET 'http://localhost:8080/helpdesk/tickets/all' \
+    'Content-Type:application/json'
+----

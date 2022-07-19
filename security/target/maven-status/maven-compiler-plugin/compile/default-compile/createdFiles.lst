@@ -1,0 +1,3 @@
+com\ojt\security\SecurityConfiguration.class
+com\ojt\security\UserPrincipal.class
+com\ojt\security\UserPrincipalDetailsService.class

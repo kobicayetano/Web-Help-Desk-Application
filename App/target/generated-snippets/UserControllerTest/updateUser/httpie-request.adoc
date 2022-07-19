@@ -1,0 +1,10 @@
+[source,bash]
+----
+$ echo '{
+  "id" : 1,
+  "username" : "username",
+  "password" : "password",
+  "role" : "ADMIN"
+}' | http PUT 'http://localhost:8080/users/update/1' \
+    'Content-Type:application/json'
+----

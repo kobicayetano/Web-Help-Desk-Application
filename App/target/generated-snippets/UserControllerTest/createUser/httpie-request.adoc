@@ -1,0 +1,10 @@
+[source,bash]
+----
+$ echo '{
+  "id" : 1,
+  "username" : "username",
+  "password" : "password",
+  "role" : "ADMIN"
+}' | http POST 'http://localhost:8080/users/add' \
+    'Content-Type:application/json'
+----

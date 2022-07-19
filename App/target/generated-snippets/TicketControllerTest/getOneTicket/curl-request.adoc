@@ -1,0 +1,5 @@
+[source,bash]
+----
+$ curl 'http://localhost:8080/helpdesk/tickets/1' -i -X GET \
+    -H 'Content-Type: application/json'
+----

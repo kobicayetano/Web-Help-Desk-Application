@@ -1,0 +1,28 @@
+|===
+|Path|Type|Description
+
+|`+[].id+`
+|`+Number+`
+|Generated employee id
+
+|`+[].employeeNumber+`
+|`+Number+`
+|Unique employee number
+
+|`+[].firstName+`
+|`+String+`
+|Employee's first name
+
+|`+[].middleName+`
+|`+String+`
+|Employee's middle name
+
+|`+[].lastName+`
+|`+String+`
+|Employee's last name
+
+|`+[].department+`
+|`+String+`
+|Employee's designated department
+
+|===

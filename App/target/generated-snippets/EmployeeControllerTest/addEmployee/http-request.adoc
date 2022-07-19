@@ -1,0 +1,16 @@
+[source,http,options="nowrap"]
+----
+POST /helpdesk/manage/employee/add HTTP/1.1
+Content-Type: application/json
+Content-Length: 151
+Host: localhost:8080
+
+{
+  "id" : 1,
+  "employeeNumber" : 1000,
+  "firstName" : "Kobi",
+  "middleName" : "Glema",
+  "lastName" : "Cayetano",
+  "department" : "ADMIN"
+}
+----

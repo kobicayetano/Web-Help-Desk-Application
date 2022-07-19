@@ -1,0 +1,13 @@
+[source,bash]
+----
+$ curl 'http://localhost:8080/helpdesk/manage/employee/1/assignTicket/1' -i -X PUT \
+    -H 'Content-Type: application/json' \
+    -d '{
+  "id" : 1,
+  "employeeNumber" : 1000,
+  "firstName" : "Kobi",
+  "middleName" : "Glema",
+  "lastName" : "Cayetano",
+  "department" : "ADMIN"
+}'
+----

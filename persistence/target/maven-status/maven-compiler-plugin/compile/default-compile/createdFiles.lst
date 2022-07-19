@@ -1,0 +1,4 @@
+com\ojt\persistence\DBInit.class
+com\ojt\persistence\TicketRepository.class
+com\ojt\persistence\EmployeeRepository.class
+com\ojt\persistence\UserRepository.class

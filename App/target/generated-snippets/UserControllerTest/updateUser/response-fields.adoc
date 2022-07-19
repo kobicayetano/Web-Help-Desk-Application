@@ -1,0 +1,20 @@
+|===
+|Path|Type|Description
+
+|`+id+`
+|`+Number+`
+|Generated user id
+
+|`+username+`
+|`+String+`
+|User's username credentials
+
+|`+password+`
+|`+String+`
+|User's password credentials
+
+|`+role+`
+|`+String+`
+|User's assigned role
+
+|===

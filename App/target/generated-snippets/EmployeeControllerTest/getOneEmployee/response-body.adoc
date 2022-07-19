@@ -1,0 +1,11 @@
+[source,options="nowrap"]
+----
+{
+  "id" : 1,
+  "employeeNumber" : 1000,
+  "firstName" : "Kobi",
+  "middleName" : "Glema",
+  "lastName" : "Cayetano",
+  "department" : "ADMIN"
+}
+----

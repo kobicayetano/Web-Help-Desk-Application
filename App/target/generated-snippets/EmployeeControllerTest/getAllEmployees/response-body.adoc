@@ -1,0 +1,18 @@
+[source,options="nowrap"]
+----
+[ {
+  "id" : 1,
+  "employeeNumber" : 1000,
+  "firstName" : "Kobi",
+  "middleName" : "Glema",
+  "lastName" : "Cayetano",
+  "department" : "ADMIN"
+}, {
+  "id" : 2,
+  "employeeNumber" : 2000,
+  "firstName" : "Shaun",
+  "middleName" : "Glema",
+  "lastName" : "Florendo",
+  "department" : "ADMIN"
+} ]
+----
